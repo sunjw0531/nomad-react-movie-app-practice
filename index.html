@@ -21,11 +21,21 @@
             value={minutes}
             onChange={(e) => {
               setMinutes(e.target.value);
+              setHours(e.target.value / 60);
             }}
           />
           <h4>You want to convert {minutes}</h4>
           <label htmlFor="hours">Hours</label>
-          <input id="hours" placeholder="Hours" type="number" value={hours} />
+          <input
+            id="hours"
+            placeholder="Hours"
+            type="number"
+            value={hours}
+            onChange={(e) => {
+              setHours(e.target.value);
+              setMinutes(e.target.value * 60);
+            }}
+          />
         </div>
       );
     };
