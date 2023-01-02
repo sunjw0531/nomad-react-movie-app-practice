@@ -8,34 +8,50 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const App = () => {
-      const [minutes, setMinutes] = React.useState();
+      const [minutes, setMinutes] = React.useState(0);
       const [hours, setHours] = React.useState();
+      const [flip, setFlip] = React.useState(true);
       return (
         <div>
-          <h1 className="">Super Converter</h1>
-          <label htmlFor="minutes">Minutes</label>
-          <input
-            id="minutes"
-            placeholder="Minutes"
-            type="number"
-            value={minutes}
-            onChange={(e) => {
-              setMinutes(e.target.value);
-              setHours(e.target.value / 60);
+          <h1>Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              value={minutes}
+              onChange={(e) => {
+                setMinutes(e.target.value);
+                setHours(e.target.value / 60);
+              }}
+              disabled={!flip}
+            />
+          </div>
+          <div>
+            <h4>You want to convert {minutes} minutes to Hours</h4>
+            <label htmlFor="hours">Hours</label>
+            <input
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              value={hours}
+              onChange={(e) => {
+                setHours(e.target.value);
+                setMinutes(e.target.value * 60);
+              }}
+              disabled={flip}
+            />
+          </div>
+          <button
+            onClick={() => {
+              setMinutes(0);
+              setHours(0);
             }}
-          />
-          <h4>You want to convert {minutes}</h4>
-          <label htmlFor="hours">Hours</label>
-          <input
-            id="hours"
-            placeholder="Hours"
-            type="number"
-            value={hours}
-            onChange={(e) => {
-              setHours(e.target.value);
-              setMinutes(e.target.value * 60);
-            }}
-          />
+          >
+            Reset
+          </button>
+          <button onClick={() => setFlip((current) => !current)}>Flip</button>
         </div>
       );
     };
