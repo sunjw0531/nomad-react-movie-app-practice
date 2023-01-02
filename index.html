@@ -7,122 +7,31 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const MinutesToHours = () => {
-      const [minutes, setMinutes] = React.useState(0);
-      const [hours, setHours] = React.useState();
-      const [flip, setFlip] = React.useState(true);
+    // const Btn = (props) => {
+    // get property from props object by using {}
+    const Btn = ({ sort, big }) => {
       return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              id="minutes"
-              placeholder="Minutes"
-              type="number"
-              value={minutes}
-              onChange={(e) => {
-                setMinutes(e.target.value);
-                setHours(e.target.value / 60);
-              }}
-              disabled={!flip}
-            />
-          </div>
-          <div>
-            <h4>You want to convert {minutes} minutes to Hours</h4>
-            <label htmlFor="hours">Hours</label>
-            <input
-              id="hours"
-              placeholder="Hours"
-              type="number"
-              value={hours}
-              onChange={(e) => {
-                setHours(e.target.value);
-                setMinutes(e.target.value * 60);
-              }}
-              disabled={flip}
-            />
-          </div>
-          <button
-            onClick={() => {
-              setMinutes(0);
-              setHours(0);
-            }}
-          >
-            Reset
-          </button>
-          <button
-            onClick={() => {
-              setFlip((current) => !current);
-              setMinutes(0);
-              setHours(0);
-            }}
-          >
-            Flip
-          </button>
-        </div>
+        <button
+          style={{
+            backgroundColor: 'tomato',
+            color: 'white',
+            padding: '10px 20px',
+            borderRadius: 10,
+            border: 0,
+            fontSize: big ? 30 : 20,
+          }}
+        >
+          {/*props.sort*/}
+          {sort}
+        </button>
       );
     };
-    const KmToMiles = () => {
-      const [distance, setDistance] = React.useState();
-      const [flip, setFlip] = React.useState(true);
 
-      const distanceSetting = (e) => {
-        setDistance(e.target.value);
-      };
-
-      return (
-        <>
-          <div>
-            <label for="km">KM </label>
-            <input
-              id="km"
-              type="number"
-              value={flip === true ? distance : distance * 1.609}
-              onChange={distanceSetting}
-              disabled={!flip}
-            />
-          </div>
-          <div>
-            <label for="miles">Miles</label>
-            <input
-              id="miles"
-              type="number"
-              value={flip === true ? distance / 1.609 : distance}
-              onChange={distanceSetting}
-              disabled={flip}
-            />
-          </div>
-          <button
-            onClick={() => {
-              setFlip((current) => !current);
-              setDistance(0);
-            }}
-          >
-            Flip
-          </button>
-        </>
-      );
-    };
     const App = () => {
-      const [index, setIndex] = React.useState('-1');
-
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-      };
       return (
         <div>
-          <h1>Super Converter</h1>
-          {/*<MinutesToHours />
-          <KmToMiles />*/}
-          <select onChange={onSelect}>
-            <option value="-1">Select Convert Mode</option>
-            <option value="0">Minutes & Hours</option>
-            <option value="1">KM & Miles</option>
-          </select>
-          <h3 />
-          {index === '-1' ? 'Select Convert Mode' : null}
-          {index === '0' ? <MinutesToHours /> : null}
-          {index === '1' ? <KmToMiles /> : null}
+          <Btn sort="Save Changes" big={true} />
+          <Btn sort="Continue" big={false} />
         </div>
       );
     };
