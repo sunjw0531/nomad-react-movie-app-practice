@@ -8,6 +8,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const Btn = ({ sort, changeValue }) => {
+      console.log(sort, 'was rendered!');
       return (
         <button
           onClick={changeValue}
@@ -23,7 +24,7 @@
         </button>
       );
     };
-
+    const MemorizedBtn = React.memo(Btn);
     const App = () => {
       const [value, setValue] = React.useState('Save Changes');
       const changeValue = () => {
@@ -31,8 +32,8 @@
       };
       return (
         <div>
-          <Btn sort={value} changeValue={changeValue} />
-          <Btn sort="continue" />
+          <MemorizedBtn sort={value} changeValue={changeValue} />
+          <MemorizedBtn sort="continue" />
         </div>
       );
     };
