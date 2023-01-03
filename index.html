@@ -7,31 +7,32 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    // const Btn = (props) => {
-    // get property from props object by using {}
-    const Btn = ({ sort, big }) => {
+    const Btn = ({ sort, changeValue }) => {
       return (
         <button
+          onClick={changeValue}
           style={{
             backgroundColor: 'tomato',
             color: 'white',
             padding: '10px 20px',
             borderRadius: 10,
             border: 0,
-            fontSize: big ? 30 : 20,
           }}
         >
-          {/*props.sort*/}
           {sort}
         </button>
       );
     };
 
     const App = () => {
+      const [value, setValue] = React.useState('Save Changes');
+      const changeValue = () => {
+        setValue('Revert Changes');
+      };
       return (
         <div>
-          <Btn sort="Save Changes" big={true} />
-          <Btn sort="Continue" big={false} />
+          <Btn sort={value} changeValue={changeValue} />
+          <Btn sort="continue" />
         </div>
       );
     };
