@@ -3,11 +3,12 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const Btn = ({ sort, changeValue }) => {
+    const Btn = ({ sort, fontSize }) => {
       console.log(sort, 'was rendered!');
       return (
         <button
@@ -18,24 +19,23 @@
             padding: '10px 20px',
             borderRadius: 10,
             border: 0,
+            fontSize,
           }}
         >
           {sort}
         </button>
       );
     };
-    const MemorizedBtn = React.memo(Btn);
+    // prop types 정의
+    Btn.propTypes = {
+      sort: PropTypes.string,
+      fontSize: PropTypes.number,
+    };
     const App = () => {
-      const [value, setValue] = React.useState('Save Changes');
-      const changeValue = () => {
-        setValue('Revert Changes');
-      };
-      return (
-        <div>
-          <MemorizedBtn sort={value} changeValue={changeValue} />
-          <MemorizedBtn sort="continue" />
-        </div>
-      );
+      <div>
+        <Btn sort="Save Changes" fontSize={18} />
+        <Btn sort={14} fontSize={'Continue'} />
+      </div>;
     };
     const root = document.getElementById('root');
     ReactDOM.render(<App />, root);
