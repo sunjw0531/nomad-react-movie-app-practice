@@ -12,7 +12,6 @@
       console.log(sort, 'was rendered!');
       return (
         <button
-          onClick={changeValue}
           style={{
             backgroundColor: 'tomato',
             color: 'white',
@@ -32,10 +31,12 @@
       fontSize: PropTypes.number,
     };
     const App = () => {
-      <div>
-        <Btn sort="Save Changes" fontSize={18} />
-        <Btn sort={14} fontSize={'Continue'} />
-      </div>;
+      return (
+        <div>
+          <Btn sort="Save Changes" fontSize={18} />
+          <Btn fontSize={14} sort="Continue" />
+        </div>
+      );
     };
     const root = document.getElementById('root');
     ReactDOM.render(<App />, root);
