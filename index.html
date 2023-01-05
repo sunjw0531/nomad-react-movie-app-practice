@@ -8,7 +8,7 @@
   <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const Btn = ({ sort, fontSize }) => {
+    const Btn = ({ sort, fontSize = 16 }) => {
       console.log(sort, 'was rendered!');
       return (
         <button
@@ -27,14 +27,14 @@
     };
     // prop types 정의
     Btn.propTypes = {
-      sort: PropTypes.string,
+      sort: PropTypes.string.isRequired,
       fontSize: PropTypes.number,
     };
     const App = () => {
       return (
         <div>
           <Btn sort="Save Changes" fontSize={18} />
-          <Btn fontSize={14} sort="Continue" />
+          <Btn sort="Continue" />
         </div>
       );
     };
