@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
-import Movies from './components/Movies';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Home from './router/Home';
 import Detail from './router/Detail';
 function App() {
   return (
-    <>
-      <Home />
-      <Detail />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie" element={<Detail />} />
+      </Routes>
+    </Router>
   );
 }
 
