@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/nomad-react-movie-app-practice/static/js/main.deb71730.js",
+    "index.html": "/nomad-react-movie-app-practice/index.html",
+    "main.deb71730.js.map": "/nomad-react-movie-app-practice/static/js/main.deb71730.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.deb71730.js"
+  ]
+}
